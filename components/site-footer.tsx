@@ -5,7 +5,7 @@ import { copy } from "@/lib/copy";
 import type { Locale } from "@/lib/site";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy;
   return (
     <footer className="site-footer" id="contribute">
       <div className="footer-top">
@@ -15,12 +15,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         </div>
         <div className="footer-links">
           <div>
-            <span>{locale === "fr" ? "Apprendre" : "Learn"}</span>
+            <span>Apprendre</span>
             <Link href={`/${locale}/tiers`}>{t.nav.explore}</Link>
             <Link href={`/${locale}/middle-school`}>{t.nav.lessons}</Link>
           </div>
           <div>
-            <span>{locale === "fr" ? "Participer" : "Participate"}</span>
+            <span>Participer</span>
             <a href="https://github.com/pierrehanne/sigmath" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={13} /></a>
             <Link href={`/${locale}#mission`}>{t.nav.about}</Link>
           </div>

@@ -14,14 +14,14 @@ export function LessonCatalogue({ lessons, locale }: { lessons: LessonMeta[]; lo
   const [query, setQuery] = useState("");
   const [subject, setSubject] = useState("");
   const subjects = [...new Set(lessons.map((lesson) => lesson.subject))];
-  const visible = lessons.filter((lesson) => (!subject || lesson.subject === subject) && normalize(`${lesson.title} ${lesson.description} ${getSubjectName(locale, lesson.subject)}`).includes(normalize(query.trim())));
+  const visible = lessons.filter((lesson) => (!subject || lesson.subject === subject) && normalize(`${lesson.title} ${lesson.description} ${getSubjectName(lesson.subject)}`).includes(normalize(query.trim())));
   return (
     <div>
       <div className="catalogue-tools">
         <label className="lesson-search"><span>Quelle notion veux-tu comprendre ?</span><div><Search size={19} aria-hidden="true" /><input type="search" placeholder="Fractions, triangles, nombres…" value={query} onChange={(event) => setQuery(event.target.value)} />{query && <button type="button" aria-label="Effacer la recherche" onClick={() => setQuery("")}><X size={17} /></button>}</div></label>
         <div className="subject-filters" role="group" aria-label="Filtrer les cours par matière">
           <button type="button" aria-pressed={!subject} onClick={() => setSubject("")}>Toutes les matières</button>
-          {subjects.map((item) => <button type="button" key={item} aria-pressed={subject === item} onClick={() => setSubject(item)}>{getSubjectName(locale, item)}</button>)}
+          {subjects.map((item) => <button type="button" key={item} aria-pressed={subject === item} onClick={() => setSubject(item)}>{getSubjectName(item)}</button>)}
         </div>
       </div>
       <p className="catalogue-count" role="status">{visible.length} {visible.length === 1 ? "leçon disponible" : "leçons disponibles"}</p>
@@ -29,7 +29,7 @@ export function LessonCatalogue({ lessons, locale }: { lessons: LessonMeta[]; lo
         {visible.map((lesson) => <Link className="lesson-card" href={`/${locale}/${lesson.tier}/${lesson.subject}/${lesson.slug}`} key={lesson.slug}>
           <span className="lesson-index">{String(lessons.indexOf(lesson) + 1).padStart(2, "0")}</span>
           <span className="lesson-dot" style={{ background: lesson.color }} />
-          <div><span className="lesson-subject">{getSubjectName(locale, lesson.subject)}</span><h3>{lesson.title}</h3><p>{lesson.description}</p></div>
+          <div><span className="lesson-subject">{getSubjectName(lesson.subject)}</span><h3>{lesson.title}</h3><p>{lesson.description}</p></div>
           <span className="lesson-time"><Clock3 />{lesson.estimatedMinutes} min</span><ArrowRight className="lesson-arrow" />
         </Link>)}
       </div>

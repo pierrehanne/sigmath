@@ -1,1 +1,0 @@
-{"slug":"time-duration","tier":"kids","subject":"measures","title":"Time and duration","description":"Read a clock and calculate elapsed time.","sceneHotspot":"kids-clock-tower","difficulty":2,"prerequisites":["kids/add-subtract"],"leadsTo":["kids/solids"],"estimatedMinutes":14,"translationStatus":"complete","order":12,"color":"#776bc0"}

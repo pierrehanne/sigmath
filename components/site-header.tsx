@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Brand } from "./brand";
 import { copy } from "@/lib/copy";
 import type { Locale } from "@/lib/site";
@@ -12,16 +12,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
-  const onLessons = /^\/fr\/(tiers|kids|cycle-3|middle-school)(\/|$)/.test(pathname);
-  const t = copy[locale];
-
-  useEffect(() => {
-    let stored: string | null = null;
-    try { stored = window.localStorage.getItem("sigmath-theme"); } catch { /* Theme remains usable without storage. */ }
-    const preferDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const nextDark = stored ? stored === "dark" : preferDark;
-    document.documentElement.dataset.theme = nextDark ? "dark" : "light";
-  }, []);
+  const onLessons = new RegExp(`^/${locale}/(tiers|kids|cycle-3|middle-school)(/|$)`).test(pathname);
+  const t = copy;
 
   function toggleTheme() {
     const nextDark = document.documentElement.dataset.theme !== "dark";
@@ -33,7 +25,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     <header className="site-header" onKeyDown={(event) => { if (event.key === "Escape" && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); } }}>
       <div className="header-inner">
         <Brand locale={locale} />
-        <nav className="desktop-nav" aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"}>
+        <nav className="desktop-nav" aria-label="Navigation principale">
           <Link href={`/${locale}/tiers`} aria-current={onLessons ? "page" : undefined}>{t.nav.lessons}</Link>
           <Link href={`/${locale}/games`} aria-current={pathname === `/${locale}/games` ? "page" : undefined}>{t.nav.games}</Link>
           <Link href={`/${locale}#mission`}>{t.nav.about}</Link>
@@ -59,7 +51,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </div>
       </div>
       {menuOpen && (
-        <nav id="mobile-navigation" className="mobile-nav" aria-label={locale === "fr" ? "Navigation mobile" : "Mobile navigation"}>
+        <nav id="mobile-navigation" className="mobile-nav" aria-label="Navigation mobile">
           <Link onClick={() => setMenuOpen(false)} href={`/${locale}/tiers`} aria-current={onLessons ? "page" : undefined}>{t.nav.lessons}</Link>
           <Link onClick={() => setMenuOpen(false)} href={`/${locale}/games`} aria-current={pathname === `/${locale}/games` ? "page" : undefined}>{t.nav.games}</Link>
           <Link onClick={() => setMenuOpen(false)} href={`/${locale}#mission`}>{t.nav.about}</Link>

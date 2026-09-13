@@ -3,7 +3,7 @@
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
-export function FractionSlicer({ locale = "fr" }: { locale?: "fr" | "en" }) {
+export function FractionSlicer() {
   const [parts, setParts] = useState(4);
   const [slices, setSlices] = useState<number[]>([0]);
   const selected = slices.length;
@@ -15,19 +15,19 @@ export function FractionSlicer({ locale = "fr" }: { locale?: "fr" | "en" }) {
   }
 
   return (
-    <section className="fraction-widget" aria-label={locale === "fr" ? "Visualiseur de fractions" : "Fraction visualizer"}>
+    <section className="fraction-widget" aria-label="Visualiseur de fractions">
       <div className="fraction-widget-copy">
-        <span>{locale === "fr" ? "Laboratoire visuel" : "Visual lab"}</span>
-        <h3>{locale === "fr" ? "Découpe la pizza" : "Slice the pizza"}</h3>
-        <p>{locale === "fr" ? "Choisis le nombre de parts, puis touche-les pour changer la quantité." : "Choose the number of pieces, then tap them to change the amount."}</p>
+        <span>Laboratoire visuel</span>
+        <h3>Découpe la pizza</h3>
+        <p>Choisis le nombre de parts, puis touche-les pour changer la quantité.</p>
         <div className="fraction-controls">
-          <button type="button" onClick={() => changeParts(parts - 1)} disabled={parts === 2} aria-label={locale === "fr" ? "Moins de parts" : "Fewer slices"}><Minus /></button>
-          <strong>{parts} <small>{locale === "fr" ? "parts" : "slices"}</small></strong>
-          <button type="button" onClick={() => changeParts(parts + 1)} disabled={parts === 8} aria-label={locale === "fr" ? "Plus de parts" : "More slices"}><Plus /></button>
+          <button type="button" onClick={() => changeParts(parts - 1)} disabled={parts === 2} aria-label="Moins de parts"><Minus /></button>
+          <strong>{parts} <small>parts</small></strong>
+          <button type="button" onClick={() => changeParts(parts + 1)} disabled={parts === 8} aria-label="Plus de parts"><Plus /></button>
         </div>
       </div>
       <div className="slicer-visual">
-        <svg viewBox="0 0 260 260" role="group" aria-label={locale === "fr" ? `Pizza représentant ${selected} sur ${parts}` : `Pizza showing ${selected} of ${parts}`}>
+        <svg viewBox="0 0 260 260" role="group" aria-label={`Pizza représentant ${selected} sur ${parts}`}>
           <circle cx="130" cy="130" r="113" fill="#f3c14f" stroke="#d89c35" strokeWidth="9" />
           {Array.from({ length: parts }, (_, index) => {
             const angle = 360 / parts;
@@ -56,7 +56,7 @@ export function FractionSlicer({ locale = "fr" }: { locale?: "fr" | "en" }) {
                 role="button"
                 aria-pressed={selectedSlice}
                 tabIndex={0}
-                aria-label={locale === "fr" ? `Part ${index + 1} sur ${parts}` : `Slice ${index + 1} of ${parts}`}
+                aria-label={`Part ${index + 1} sur ${parts}`}
                 className="slicer-piece"
               />
             );

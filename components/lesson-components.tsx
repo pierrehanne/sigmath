@@ -8,14 +8,14 @@ export function Callout({ title, children }: { title: string; children: ReactNod
   return <aside className="lesson-callout"><Lightbulb /><div><strong>{title}</strong><div className="callout-body">{children}</div></div></aside>;
 }
 
-export function QuickCheck({ answer, locale = "fr" }: { answer: string; locale?: "fr" | "en" }) {
+export function QuickCheck({ answer }: { answer: string }) {
   const [revealed, setRevealed] = useState(false);
   return (
     <div className={`quick-check ${revealed ? "is-revealed" : ""}`}>
-      <div><span>{locale === "fr" ? "Vérification rapide" : "Quick check"}</span><strong>{revealed ? answer : "?"}</strong></div>
+      <div><span>Vérification rapide</span><strong>{revealed ? answer : "?"}</strong></div>
       <button type="button" onClick={() => setRevealed((value) => !value)}>
         {revealed ? <RotateCcw /> : <Check />}
-        {revealed ? (locale === "fr" ? "Masquer" : "Hide") : (locale === "fr" ? "Voir la réponse" : "Reveal answer")}
+        {revealed ? "Masquer" : "Voir la réponse"}
       </button>
     </div>
   );

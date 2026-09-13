@@ -9,31 +9,29 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
-    "typecheck": "tsc --noEmit",
-    "check:translations": "node scripts/check-translations.mjs"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "latest",
+    "@tailwindcss/postcss": "^4.3.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "katex": "latest",
-    "lucide-react": "latest",
-    "next": "latest",
-    "next-mdx-remote": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "rehype-katex": "latest",
-    "remark-math": "latest",
-    "tailwindcss": "latest"
+    "katex": "^0.18.5",
+    "lucide-react": "^1.38.0",
+    "next": "^16.3.3",
+    "next-mdx-remote": "^6.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.63.0",
-    "@types/katex": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
-    "typescript": "latest"
+    "@types/katex": "^0.16.8",
+    "@types/node": "^26.4.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.3",
+    "typescript": "^6.0.3"
   }
 }

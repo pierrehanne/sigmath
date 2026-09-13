@@ -3,78 +3,44 @@
 import { Minus, Plus, RotateCcw } from "lucide-react";
 import { useState } from "react";
 
-type LabProps = { locale?: "fr" | "en" };
-
 const text = {
-  fr: {
-    visualLab: "Laboratoire visuel",
-    numberTitle: "Le jardin des dizaines",
-    numberCopy: "Fais varier le nombre. Les fleurs se rangent automatiquement par bouquets de dix.",
-    tens: "dizaines",
-    ones: "unités",
-    shareTitle: "Le goûter à partager",
-    shareCopy: "Répartis les biscuits équitablement et observe ce qu’il reste.",
-    children: "enfants",
-    each: "chacun",
-    remainder: "reste",
-    clockTitle: "L’horloge voyageuse",
-    clockCopy: "Déplace l’heure et la durée pour voir les aiguilles avancer.",
-    start: "départ",
-    duration: "durée",
-    result: "arrivée",
-    minutes: "minutes",
-    shapeTitle: "Le détective des formes",
-    shapeCopy: "Choisis une figure et observe les propriétés qui permettent de la reconnaitre.",
-    sides: "côtés",
-    vertices: "sommets",
-    rightAngles: "angles droits",
-    dataTitle: "L’enquête des fruits",
-    dataCopy: "Ajoute un vote. Les barres gardent la même échelle : de 0 à 12 voix.",
-    votes: "votes",
-    reset: "Recommencer",
-    lengthTitle: "La règle magique",
-    lengthCopy: "Fais grandir le ruban puis lis sa mesure sur la règle.",
-    measured: "longueur mesurée",
-  },
-  en: {
-    visualLab: "Visual lab",
-    numberTitle: "The garden of tens",
-    numberCopy: "Change the number. The flowers automatically gather into groups of ten.",
-    tens: "tens",
-    ones: "ones",
-    shareTitle: "Sharing snack time",
-    shareCopy: "Share the biscuits equally and watch what is left over.",
-    children: "children",
-    each: "each",
-    remainder: "left",
-    clockTitle: "The travelling clock",
-    clockCopy: "Move the start time and duration to watch the hands advance.",
-    start: "start",
-    duration: "duration",
-    result: "finish",
-    minutes: "minutes",
-    shapeTitle: "The shape detective",
-    shapeCopy: "Choose a shape and inspect the properties that identify it.",
-    sides: "sides",
-    vertices: "vertices",
-    rightAngles: "right angles",
-    dataTitle: "The fruit survey",
-    dataCopy: "Add a vote. The bars keep the same scale: from 0 to 12 votes.",
-    votes: "votes",
-    reset: "Reset",
-    lengthTitle: "The magic ruler",
-    lengthCopy: "Make the ribbon grow, then read its measurement on the ruler.",
-    measured: "measured length",
-  },
+  visualLab: "Laboratoire visuel",
+  numberTitle: "Le jardin des dizaines",
+  numberCopy: "Fais varier le nombre. Les fleurs se rangent automatiquement par bouquets de dix.",
+  tens: "dizaines",
+  ones: "unités",
+  shareTitle: "Le goûter à partager",
+  shareCopy: "Répartis les biscuits équitablement et observe ce qu’il reste.",
+  children: "enfants",
+  each: "chacun",
+  remainder: "reste",
+  clockTitle: "L’horloge voyageuse",
+  clockCopy: "Déplace l’heure et la durée pour voir les aiguilles avancer.",
+  start: "départ",
+  duration: "durée",
+  result: "arrivée",
+  minutes: "minutes",
+  shapeTitle: "Le détective des formes",
+  shapeCopy: "Choisis une figure et observe les propriétés qui permettent de la reconnaitre.",
+  sides: "côtés",
+  vertices: "sommets",
+  rightAngles: "angles droits",
+  dataTitle: "L’enquête des fruits",
+  dataCopy: "Ajoute un vote. Les barres gardent la même échelle : de 0 à 12 voix.",
+  votes: "votes",
+  reset: "Recommencer",
+  lengthTitle: "La règle magique",
+  lengthCopy: "Fais grandir le ruban puis lis sa mesure sur la règle.",
+  measured: "longueur mesurée",
 };
 
 function LabIntro({ kicker, title, copy }: { kicker: string; title: string; copy: string }) {
   return <div className="kid-lab-intro"><span>{kicker}</span><h3>{title}</h3><p>{copy}</p></div>;
 }
 
-export function NumberGarden({ locale = "fr" }: LabProps) {
+export function NumberGarden() {
   const [value, setValue] = useState(34);
-  const t = text[locale];
+  const t = text;
   const tens = Math.floor(value / 10);
   const ones = value % 10;
 
@@ -90,16 +56,16 @@ export function NumberGarden({ locale = "fr" }: LabProps) {
           <strong>{value}</strong>
           <span><b>{tens}</b> {t.tens}</span><span>+</span><span><b>{ones}</b> {t.ones}</span>
         </output>
-        <input aria-label={locale === "fr" ? "Nombre de fleurs" : "Number of flowers"} type="range" min="0" max="99" value={value} onChange={(event) => setValue(Number(event.target.value))} />
+        <input aria-label="Nombre de fleurs" type="range" min="0" max="99" value={value} onChange={(event) => setValue(Number(event.target.value))} />
       </div>
     </section>
   );
 }
 
-export function SharingLab({ locale = "fr" }: LabProps) {
+export function SharingLab() {
   const [items, setItems] = useState(14);
   const [people, setPeople] = useState(4);
-  const t = text[locale];
+  const t = text;
   const each = Math.floor(items / people);
   const remainder = items % people;
 
@@ -112,7 +78,7 @@ export function SharingLab({ locale = "fr" }: LabProps) {
         </div>
         <div className="sharing-remainder" aria-label={`${remainder} ${t.remainder}`}>{Array.from({ length: remainder }, (_, index) => <span key={index} aria-hidden="true">●</span>)}<small>{remainder} {t.remainder}</small></div>
         <div className="lab-steppers">
-          <Stepper label={locale === "fr" ? "biscuits" : "biscuits"} value={items} min={4} max={24} onChange={setItems} />
+          <Stepper label="biscuits" value={items} min={4} max={24} onChange={setItems} />
           <span aria-hidden="true">÷</span>
           <Stepper label={t.children} value={people} min={2} max={6} onChange={setPeople} />
         </div>
@@ -154,10 +120,10 @@ function ClockFace({ minutes, label }: { minutes: number; label: string }) {
   );
 }
 
-export function ClockLab({ locale = "fr" }: LabProps) {
+export function ClockLab() {
   const [start, setStart] = useState(8 * 60 + 15);
   const [duration, setDuration] = useState(45);
-  const t = text[locale];
+  const t = text;
 
   return (
     <section className="kid-lab kid-lab--clock" aria-label={t.clockTitle}>
@@ -166,8 +132,8 @@ export function ClockLab({ locale = "fr" }: LabProps) {
         <ClockFace minutes={start} label={t.start} /><span className="clock-plus">+ {duration} min</span><ClockFace minutes={start + duration} label={t.result} />
       </div>
       <div className="clock-sliders">
-        <label>{t.start}<input type="range" min="360" max="1080" step="15" value={start} onChange={(event) => setStart(Number(event.target.value))} /></label>
-        <label>{t.duration}: {duration} {t.minutes}<input type="range" min="15" max="180" step="15" value={duration} onChange={(event) => setDuration(Number(event.target.value))} /></label>
+        <label>{t.start}<input type="range" min="360" max="1080" step="15" value={start} aria-valuetext={formatTime(start)} onChange={(event) => setStart(Number(event.target.value))} /></label>
+        <label>{t.duration}: {duration} {t.minutes}<input type="range" min="15" max="180" step="15" value={duration} aria-valuetext={`${duration} ${t.minutes}`} onChange={(event) => setDuration(Number(event.target.value))} /></label>
       </div>
     </section>
   );
@@ -181,12 +147,12 @@ const shapes = {
   diamond: { sides: 4, vertices: 4, rightAngles: 0, path: "M120 22 L212 100 L120 178 L28 100 Z" },
 };
 
-export function ShapeLab({ locale = "fr" }: LabProps) {
+const shapeLabels = { square: "carré", rectangle: "rectangle", triangle: "triangle", "right-triangle": "triangle rectangle", diamond: "losange" };
+
+export function ShapeLab() {
   const [shape, setShape] = useState<keyof typeof shapes>("square");
-  const t = text[locale];
-  const labels = locale === "fr"
-    ? { square: "carré", rectangle: "rectangle", triangle: "triangle", "right-triangle": "triangle rectangle", diamond: "losange" }
-    : { square: "square", rectangle: "rectangle", triangle: "triangle", "right-triangle": "right triangle", diamond: "rhombus" };
+  const t = text;
+  const labels = shapeLabels;
   const current = shapes[shape];
 
   return (
@@ -196,16 +162,16 @@ export function ShapeLab({ locale = "fr" }: LabProps) {
         <svg viewBox="0 0 240 200" role="img" aria-label={labels[shape]}><path d={current.path} /></svg>
         <output><strong>{labels[shape]}</strong><span>{current.sides} {t.sides}</span><span>{current.vertices} {t.vertices}</span><span>{current.rightAngles} {t.rightAngles}</span></output>
       </div>
-      <div className="shape-tabs" role="group" aria-label={locale === "fr" ? "Choisir une figure" : "Choose a shape"}>
+      <div className="shape-tabs" role="group" aria-label="Choisir une figure">
         {(Object.keys(shapes) as (keyof typeof shapes)[]).map((key) => <button type="button" className={key === shape ? "active" : ""} aria-pressed={key === shape} onClick={() => setShape(key)} key={key}>{labels[key]}</button>)}
       </div>
     </section>
   );
 }
 
-export function LengthLab({ locale = "fr" }: LabProps) {
+export function LengthLab() {
   const [length, setLength] = useState(7);
-  const t = text[locale];
+  const t = text;
   return (
     <section className="kid-lab kid-lab--length" aria-label={t.lengthTitle}>
       <LabIntro kicker={t.visualLab} title={t.lengthTitle} copy={t.lengthCopy} />
@@ -222,10 +188,10 @@ export function LengthLab({ locale = "fr" }: LabProps) {
   );
 }
 
-export function DataLab({ locale = "fr" }: LabProps) {
+export function DataLab() {
   const [values, setValues] = useState([4, 7, 3, 5]);
-  const t = text[locale];
-  const fruits = locale === "fr" ? ["Orange", "Fraise", "Banane", "Kiwi"] : ["Orange", "Strawberry", "Banana", "Kiwi"];
+  const t = text;
+  const fruits = ["Orange", "Fraise", "Banane", "Kiwi"];
   const icons = ["🍊", "🍓", "🍌", "🥝"];
   return (
     <section className="kid-lab kid-lab--data" aria-label={t.dataTitle}>

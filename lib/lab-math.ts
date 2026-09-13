@@ -28,10 +28,10 @@ export function triangleAngles(x: number, height: number) {
   return [a, b, Math.round((180 - a - b) * 10) / 10];
 }
 
-export function formatNumber(value: number, locale: "fr" | "en", digits = 0) {
-  return new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-GB", { maximumFractionDigits: digits }).format(value);
+export function formatNumber(value: number, digits = 0) {
+  return new Intl.NumberFormat("fr-FR", { maximumFractionDigits: digits }).format(value);
 }
 
-export function moneyAmount(cents: number, locale: "fr" | "en") {
-  return new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-GB", { style: "currency", currency: "EUR" }).format(cents / 100);
+export function moneyAmount(cents: number) {
+  return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(cents / 100);
 }

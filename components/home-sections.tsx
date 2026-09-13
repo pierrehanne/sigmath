@@ -5,16 +5,16 @@ import type { Locale } from "@/lib/site";
 import { TierGrid } from "./tier-grid";
 
 export function HomeSections({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy;
   return (
     <>
       <section className="home-play-banner" aria-labelledby="home-play-title">
         <div>
-          <p className="eyebrow"><span />{locale === "fr" ? "À toi de jouer · CM1–6e" : "Your turn to play · ages 9–12"}</p>
-          <h2 id="home-play-title">{locale === "fr" ? "Une petite expérience. Un vrai déclic." : "A small experiment. A real discovery."}</h2>
-          <p>{locale === "fr" ? "Partage un goûter, saute entre les décimaux, dessine un jardin. Trois jeux pour voir ce que les nombres veulent dire." : "Share a snack, jump between decimals, draw a garden. Three games to see what numbers mean."}</p>
+          <p className="eyebrow"><span />À toi de jouer · CM1–6e</p>
+          <h2 id="home-play-title">Une petite expérience. Un vrai déclic.</h2>
+          <p>Partage un goûter, saute entre les décimaux, dessine un jardin. Trois jeux pour voir ce que les nombres veulent dire.</p>
         </div>
-        <Link className="button button--primary" href={`/${locale}/games`}>{locale === "fr" ? "Choisir un jeu" : "Choose a game"}<ArrowRight size={17} /></Link>
+        <Link className="button button--primary" href={`/${locale}/games`}>Choisir un jeu<ArrowRight size={17} /></Link>
       </section>
       <section className="tiers-section" id="tiers">
         <div className="section-heading">
@@ -47,7 +47,7 @@ export function HomeSections({ locale }: { locale: Locale }) {
           </div>
           <div className="fraction-note fraction-note--two"><span>2</span><i /><span>8</span></div>
           <svg className="lesson-squiggle" viewBox="0 0 250 100"><path d="M3 77c48-87 111 43 158-35 24-40 58-37 86-15" /></svg>
-          <span className="art-label">{locale === "fr" ? "Même quantité !" : "Same amount!"}</span>
+          <span className="art-label">Même quantité !</span>
         </div>
       </section>
 
@@ -58,13 +58,13 @@ export function HomeSections({ locale }: { locale: Locale }) {
           <h2>{t.missionTitle}</h2>
           <p>{t.missionBody}</p>
           <a className="text-link" href="https://github.com/pierrehanne/sigmath" target="_blank" rel="noreferrer">
-            <GitFork size={18} />{locale === "fr" ? "Voir le projet sur GitHub" : "View the project on GitHub"}<ArrowRight size={16} />
+            <GitFork size={18} />Voir le projet sur GitHub<ArrowRight size={16} />
           </a>
         </div>
         <div className="mission-values">
-          <div><BookOpen /><span>{locale === "fr" ? "Cours libres" : "Open lessons"}</span></div>
+          <div><BookOpen /><span>Cours libres</span></div>
           <div><Globe2 /><span>100 % en français</span></div>
-          <div><HeartHandshake /><span>{locale === "fr" ? "Construit ensemble" : "Built together"}</span></div>
+          <div><HeartHandshake /><span>Construit ensemble</span></div>
           <div><Sparkles /><span>Du CP à la 3e</span></div>
         </div>
       </section>

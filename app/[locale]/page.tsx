@@ -10,7 +10,10 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  return { title: locale === "fr" ? "Les maths, un déclic à la fois" : "SigMath" };
+  return {
+    title: "Les maths, un déclic à la fois",
+    alternates: { canonical: `/${locale}` },
+  };
 }
 
 export default async function HomePage({ params }: Props) {

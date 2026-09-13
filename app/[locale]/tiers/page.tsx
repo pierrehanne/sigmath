@@ -5,7 +5,10 @@ import { isLocale } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string }> };
 
-export const metadata: Metadata = { title: "Choisis ton parcours, du CP à la 3e" };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return { title: "Choisis ton parcours, du CP à la 3e", alternates: { canonical: `/${locale}/tiers` } };
+}
 
 export default async function TiersPage({ params }: Props) {
   const { locale } = await params;
@@ -13,7 +16,7 @@ export default async function TiersPage({ params }: Props) {
   return (
     <div className="inner-page tiers-page">
       <header className="page-hero">
-        <p className="eyebrow"><span />{locale === "fr" ? "Tous les niveaux" : "All levels"}</p>
+        <p className="eyebrow"><span />Tous les niveaux</p>
         <h1>Tu es dans quelle classe ?</h1>
         <p>Choisis le parcours de ta classe. Tu peux aussi revenir aux bases : chacun avance à son rythme. La 6e se trouve dans le cycle 3.</p>
       </header>

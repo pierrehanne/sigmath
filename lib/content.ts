@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type { Locale, TierSlug } from "./site";
-import { locales, tiers } from "./site";
+import type { Locale, TierSlug } from "./site.ts";
+import { locales, tiers } from "./site.ts";
 
 export type LessonMeta = {
   slug: string;

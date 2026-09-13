@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 import { answerFeedback, challenges, decimal, evaluateAnswer, games } from "../lib/games.ts";
 
@@ -28,9 +28,8 @@ test("decimal positions are exact and display the French decimal comma", () => {
     assert.equal(evaluateAnswer({ kind: "number-line", tenths }, tenths), true);
     assert.equal(evaluateAnswer({ kind: "number-line", tenths }, tenths + 1), false);
   }
-  assert.equal(decimal(7, "fr"), "0,7");
-  assert.equal(decimal(13, "fr"), "1,3");
-  assert.equal(decimal(13, "en"), "1.3");
+  assert.equal(decimal(7), "0,7");
+  assert.equal(decimal(13), "1,3");
 });
 
 test("all nine challenges have a solution reachable through the controls", () => {
@@ -47,18 +46,19 @@ test("all nine challenges have a solution reachable through the controls", () =>
 });
 
 test("feedback gives the correct direction and distinguishes area from perimeter", () => {
-  assert.match(answerFeedback(challenges.fractions[0], 1, 1, "fr"), /Ajoute/);
-  assert.match(answerFeedback(challenges.fractions[0], 3, 1, "fr"), /Retire/);
-  assert.match(answerFeedback(challenges["number-line"][0], 3, 1, "fr"), /droite/);
-  assert.match(answerFeedback(challenges["number-line"][0], 10, 1, "fr"), /gauche/);
-  assert.match(answerFeedback(challenges.area[0], 3, 4, "fr"), /12 m².*14 m/);
+  assert.match(answerFeedback(challenges.fractions[0], 1, 1), /Ajoute/);
+  assert.match(answerFeedback(challenges.fractions[0], 3, 1), /Retire/);
+  assert.match(answerFeedback(challenges["number-line"][0], 3, 1), /droite/);
+  assert.match(answerFeedback(challenges["number-line"][0], 10, 1), /gauche/);
+  assert.match(answerFeedback(challenges.area[0], 3, 4), /12 m².*14 m/);
 });
 
-test("every game links to an existing lesson in both languages", async () => {
+test("every game links to an existing lesson with the correct subject", async () => {
   for (const game of games) {
-    const [tier, , slug] = game.lesson.split("/");
-    for (const locale of ["fr", "en"]) {
-      await access(new URL(`../content/${locale}/${tier}/${slug}.mdx`, import.meta.url));
-    }
+    const [tier, subject, slug] = game.lesson.split("/");
+    await access(new URL(`../content/fr/${tier}/${slug}.mdx`, import.meta.url));
+    const rawMeta = await readFile(new URL(`../content/fr/${tier}/${slug}.meta.json`, import.meta.url), "utf8");
+    const meta = JSON.parse(rawMeta);
+    assert.equal(meta.subject, subject, `${game.lesson} should reference the lesson's real subject`);
   }
 });
