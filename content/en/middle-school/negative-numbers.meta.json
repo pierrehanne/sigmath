@@ -1,0 +1,15 @@
+{
+  "slug": "negative-numbers",
+  "tier": "middle-school",
+  "subject": "numbers",
+  "title": "Below zero",
+  "description": "Discover negative numbers through temperature and altitude.",
+  "sceneHotspot": "weather-station-thermometer",
+  "difficulty": 1,
+  "prerequisites": [],
+  "leadsTo": ["middle-school/equations"],
+  "estimatedMinutes": 10,
+  "translationStatus": "complete",
+  "order": 3,
+  "color": "#2c93c8"
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "probability",
+  "tier": "middle-school",
+  "subject": "statistics",
+  "title": "Hasard ou certitude ?",
+  "description": "Mesurer les chances d'un événement avec des dés et des jeux.",
+  "sceneHotspot": "playground-dice",
+  "difficulty": 2,
+  "prerequisites": ["middle-school/fractions"],
+  "leadsTo": ["high-school/probability"],
+  "estimatedMinutes": 15,
+  "translationStatus": "complete",
+  "order": 5,
+  "color": "#db9b26"
+}

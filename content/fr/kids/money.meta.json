@@ -1,0 +1,1 @@
+{"slug":"money","tier":"kids","subject":"measures","title":"Calculer avec la monnaie","description":"Composer des sommes, utiliser les centimes et rendre la monnaie.","sceneHotspot":"kids-market-stall","difficulty":2,"prerequisites":["kids/add-subtract"],"leadsTo":["kids/time-duration"],"estimatedMinutes":12,"translationStatus":"complete","order":11,"color":"#687fc5"}

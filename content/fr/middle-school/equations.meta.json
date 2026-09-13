@@ -1,0 +1,15 @@
+{
+  "slug": "equations",
+  "tier": "middle-school",
+  "subject": "algebra",
+  "title": "L'équilibre des équations",
+  "description": "Résoudre une inconnue en gardant les deux côtés en équilibre.",
+  "sceneHotspot": "market-scales",
+  "difficulty": 2,
+  "prerequisites": ["middle-school/negative-numbers"],
+  "leadsTo": ["high-school/functions"],
+  "estimatedMinutes": 16,
+  "translationStatus": "complete",
+  "order": 4,
+  "color": "#178c82"
+}

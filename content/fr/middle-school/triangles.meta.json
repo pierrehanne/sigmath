@@ -1,0 +1,15 @@
+{
+  "slug": "triangles",
+  "tier": "middle-school",
+  "subject": "geometry",
+  "title": "Le monde des triangles",
+  "description": "Classer les triangles et comprendre pourquoi leur forme est si solide.",
+  "sceneHotspot": "school-roof-triangle",
+  "difficulty": 1,
+  "prerequisites": [],
+  "leadsTo": ["middle-school/pythagoras"],
+  "estimatedMinutes": 14,
+  "translationStatus": "complete",
+  "order": 2,
+  "color": "#6e6bdc"
+}

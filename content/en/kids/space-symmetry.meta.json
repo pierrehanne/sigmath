@@ -1,0 +1,1 @@
+{"slug":"space-symmetry","tier":"kids","subject":"geometry","title":"Position, movement and symmetry","description":"Code routes, read a map and complete a symmetric shape.","sceneHotspot":"kids-map-maze","difficulty":2,"prerequisites":["kids/plane-shapes"],"leadsTo":["kids/data-charts"],"estimatedMinutes":13,"translationStatus":"complete","order":15,"color":"#d15a6f"}

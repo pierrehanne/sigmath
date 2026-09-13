@@ -1,0 +1,1 @@
+{"slug":"time-duration","tier":"kids","subject":"measures","title":"Heures et durées","description":"Lire une horloge et calculer le temps entre deux instants.","sceneHotspot":"kids-clock-tower","difficulty":2,"prerequisites":["kids/add-subtract"],"leadsTo":["kids/solids"],"estimatedMinutes":14,"translationStatus":"complete","order":12,"color":"#776bc0"}

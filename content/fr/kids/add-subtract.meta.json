@@ -1,0 +1,1 @@
+{"slug":"add-subtract","tier":"kids","subject":"numbers","title":"Additionner et soustraire","description":"Donner du sens aux calculs, mentalement et en colonnes.","sceneHotspot":"kids-marble-table","difficulty":1,"prerequisites":["kids/order-number-line"],"leadsTo":["kids/multiply-divide"],"estimatedMinutes":13,"translationStatus":"complete","order":4,"color":"#dd9d2e"}
